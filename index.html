@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtVerse - Modern Artistic Museum Aggregator</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Pure Vanilla CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">ArtVerse</div>
+            <nav class="nav-links">
+                <a href="#" class="active">Explore</a>
+                <a href="#">Favourites</a>
+                <a href="#">About</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button id="themeToggle" class="icon-btn">
+                    <span class="material-symbols-outlined">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg">
+                <img src="https://lh3.googleusercontent.com/aida/ADBb0ugueXGflkS1DpO-dtjO-9GH8KGq4ml9J7g3pBuc2r5pAXKYB_mtL5V2LsTJGqb1jQOsXAwGFHc9w6nQEsvE212p6c6ud7ls8KQwIZ26zdIx3w9J5MHpU6tWHqbPLPh867IfP4689up_VWYhO169fH2owxKMR1g8J4KvGQUWsrrL7ZSgV6xE3W6wIQY1u0EPqro5halD9luaj2yhOeu5My-Lxk8BmHDOr_oDQaqxBvMmsJKldYbk-YZV5z7W7LxTV3pDptDrfID8jQ" alt="Starry Night background">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="hero-content">
+                <span class="hero-subtitle">ArtVerse</span>
+                <h1 class="hero-title">Explore Art That <br> Feels Right</h1>
+                <p class="hero-description">Discover masterpieces from world-renowned museums — curated by style, mood, or era.</p>
+                <button class="btn btn-primary">Explore Collections</button>
+            </div>
+        </section>
+
+        <!-- Search and Filter Controls Space -->
+        <section class="controls-section">
+            <div class="controls-container">
+                
+                <div class="search-wrapper">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search by artist, style or museum...">
+                </div>
+
+                <div class="filter-wrapper">
+                    <select id="museumFilter" class="custom-select">
+                        <option value="All Museums">All Museums</option>
+                        <option value="The Rijksmuseum">The Rijksmuseum</option>
+                        <option value="Harvard Art Museums">Harvard Art Museums</option>
+                        <option value="Unsplash">Unsplash Prints</option>
+                    </select>
+
+                    <select id="sortFilter" class="custom-select">
+                        <option value="Relevant">Sort By: Relevant</option>
+                        <option value="Newest">Newest</option>
+                        <option value="Oldest First">Era: Oldest First</option>
+                    </select>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Artwork Masonry Grid -->
+        <section class="gallery-section">
+            <div id="masonryGrid" class="masonry-grid">
+                
+                <!-- Loading Spinner State -->
+                <div id="loadingState" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Curating Masterpieces...</p>
+                </div>
+                
+                <!-- Dynamic cards injected via Javascript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h2 class="footer-logo">ArtVerse</h2>
+                <p>A digital sanctuary for art lovers. Bridging the gap between the world's most prestigious collections and your screen.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Museums</h4>
+                    <ul>
+                        <li>The Rijksmuseum</li>
+                        <li>Art Institute of Chicago</li>
+                        <li>Harvard Art Museums</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li>Virtual Tours</li>
+                        <li>Collection Highlights</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ArtVerse. Vanilla JS Capstone Project.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav">
+        <button class="mobile-btn active">
+            <span class="material-symbols-outlined" data-weight="fill">explore</span>
+        </button>
+        <button class="mobile-btn">
+            <span class="material-symbols-outlined">museum</span>
+        </button>
+        <button class="mobile-btn">
+            <span class="material-symbols-outlined">person</span>
+        </button>
+    </nav>
+
+    <!-- Load pure JS Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
