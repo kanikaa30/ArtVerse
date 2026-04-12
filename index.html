@@ -19,12 +19,12 @@
         <div class="nav-container">
             <div class="logo">ArtVerse</div>
             <nav class="nav-links">
-                <a href="#" class="active">Explore</a>
-                <a href="#">Favourites</a>
-                <a href="#">About</a>
+                <a href="#explore" id="navExplore" class="nav-link active">Explore</a>
+                <a href="#favourites" id="navFavourites" class="nav-link">Favourites</a>
+                <a href="#about" id="navAbout" class="nav-link">About</a>
             </nav>
             <div class="nav-actions">
-                <button class="icon-btn">
+                <button class="icon-btn" onclick="document.getElementById('searchInput').focus(); document.getElementById('explore').scrollIntoView({behavior:'smooth'});">
                     <span class="material-symbols-outlined">search</span>
                 </button>
                 <button id="themeToggle" class="icon-btn">
@@ -46,12 +46,12 @@
                 <span class="hero-subtitle">ArtVerse</span>
                 <h1 class="hero-title">Explore Art That <br> Feels Right</h1>
                 <p class="hero-description">Discover masterpieces from world-renowned museums — curated by style, mood, or era.</p>
-                <button class="btn btn-primary">Explore Collections</button>
+                <button id="exploreBtn" class="btn btn-primary">Explore Collections</button>
             </div>
         </section>
 
         <!-- Search and Filter Controls Space -->
-        <section class="controls-section">
+        <section id="explore" class="controls-section">
             <div class="controls-container">
                 
                 <div class="search-wrapper">
@@ -90,6 +90,54 @@
                 <!-- Dynamic cards injected via Javascript -->
             </div>
         </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <span class="hero-subtitle">About ArtVerse</span>
+                <h2 class="about-title">Where Art Meets Technology</h2>
+                <p class="about-description">
+                    ArtVerse is a digital sanctuary that bridges the gap between the world's most prestigious art collections and your screen. 
+                    We aggregate masterpieces from renowned institutions including Harvard Art Museums, The Rijksmuseum, and Unsplash's creative community 
+                    — all in one beautifully designed, responsive platform.
+                </p>
+
+                <div class="about-features">
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">museum</span>
+                        <h3>Multi-Museum Access</h3>
+                        <p>Explore collections from world-class museums without leaving your seat. Filter by institution to find exactly what inspires you.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">favorite</span>
+                        <h3>Personal Collections</h3>
+                        <p>Build your own curated gallery by favoriting artworks. Your personal collection is always one click away.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">search</span>
+                        <h3>Smart Search</h3>
+                        <p>Find artworks by artist name, title, or style. Our intelligent search processes results in real-time as you type.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="material-symbols-outlined feature-icon">palette</span>
+                        <h3>100+ Artworks</h3>
+                        <p>Browse through a rich collection of over 100 artworks spanning centuries of artistic achievement and creative expression.</p>
+                    </div>
+                </div>
+
+                <div class="about-tech">
+                    <h3 class="tech-title">Built With</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Vanilla JavaScript</span>
+                        <span class="tech-tag">CSS3 Masonry Grid</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">Array HOFs</span>
+                        <span class="tech-tag">Responsive Design</span>
+                        <span class="tech-tag">Async/Await</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -105,8 +153,8 @@
                     <h4>Museums</h4>
                     <ul>
                         <li>The Rijksmuseum</li>
-                        <li>Art Institute of Chicago</li>
                         <li>Harvard Art Museums</li>
+                        <li>Unsplash Prints</li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -125,13 +173,13 @@
 
     <!-- Mobile Nav -->
     <nav class="mobile-nav">
-        <button class="mobile-btn active">
-            <span class="material-symbols-outlined" data-weight="fill">explore</span>
+        <button class="mobile-btn active" onclick="navigateTo('explore')">
+            <span class="material-symbols-outlined">explore</span>
         </button>
-        <button class="mobile-btn">
-            <span class="material-symbols-outlined">museum</span>
+        <button class="mobile-btn" onclick="navigateTo('favourites')">
+            <span class="material-symbols-outlined">favorite</span>
         </button>
-        <button class="mobile-btn">
+        <button class="mobile-btn" onclick="navigateTo('about')">
             <span class="material-symbols-outlined">person</span>
         </button>
     </nav>

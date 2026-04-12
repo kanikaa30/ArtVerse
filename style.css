@@ -68,8 +68,8 @@ body {
 
 .logo {
     font-family: 'Noto Serif', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 700;
     font-style: italic;
     color: var(--text-primary);
 }
@@ -154,7 +154,8 @@ body.light-mode .hero-overlay {
     color: var(--accent-color);
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
 }
 
@@ -521,6 +522,118 @@ body.light-mode .hero-overlay {
     color: var(--accent-color);
 }
 
+/* ---------- About Section ---------- */
+html { scroll-behavior: smooth; }
+
+.about-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.about-container {
+    text-align: center;
+}
+
+.about-title {
+    font-family: 'Noto Serif', serif;
+    font-weight: 300;
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.about-description {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+    line-height: 1.8;
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.feature-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+    font-family: 'Noto Serif', serif;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.about-tech {
+    margin-top: 2rem;
+}
+
+.tech-title {
+    color: var(--text-primary);
+    font-family: 'Noto Serif', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.tech-tag {
+    background: var(--surface-color-light);
+    color: var(--accent-color);
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--border-color);
+}
+
+/* Active nav link indicator */
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-link.active {
+    color: var(--accent-color);
+}
+
 /* ---------- Artwork Modal ---------- */
 .modal-overlay {
     position: fixed;
@@ -658,6 +771,7 @@ body.light-mode .modal-overlay {
 @media (min-width: 640px) {
     .masonry-grid { column-count: 2; }
     .hero-title { font-size: 5rem; }
+    .about-features { grid-template-columns: 1fr 1fr; }
 }
 
 @media (min-width: 1024px) {
@@ -667,6 +781,7 @@ body.light-mode .modal-overlay {
     .nav-links { display: flex; }
     .mobile-nav { display: none; }
     .footer-container { flex-direction: row; justify-content: space-between; }
+    .about-features { grid-template-columns: repeat(4, 1fr); }
     
     .modal-content {
         flex-direction: row;
