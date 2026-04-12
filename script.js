@@ -53,10 +53,10 @@ const fetchArtworks = async () => {
         } catch (error) {
             console.warn("Harvard API skipped (using fallback data). Sign up for a free key at harvardartmuseums.org to use live data.");
             // Beginner-friendly mock data fallback so your dropdown filter still perfectly works for grading!
-            // We use guaranteed public domain IIIF images to ensure 0 broken images on localhost!
+            // We use Unsplash Source permanent URLs which work from ANY origin (file://, localhost, deployed)
             const mockHarvard = [
-                { id: 'h-mock-1', title: 'The Bedroom', artist: 'Vincent van Gogh', date: '1889', medium: 'Oil on Canvas', museum: 'Harvard Art Museums', image_url: 'https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/843,/0/default.jpg', isFavorite: false },
-                { id: 'h-mock-2', title: 'Two Sisters', artist: 'Pierre-Auguste Renoir', date: '1881', medium: 'Oil on Canvas', museum: 'Harvard Art Museums', image_url: 'https://www.artic.edu/iiif/2/1a1bd51b-42ea-28ba-5d75-52bb6c8913b2/full/843,/0/default.jpg', isFavorite: false }
+                { id: 'h-mock-1', title: 'Classical Portrait Study', artist: 'Harvard Collection', date: '1889', medium: 'Oil on Canvas', museum: 'Harvard Art Museums', image_url: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=800', isFavorite: false },
+                { id: 'h-mock-2', title: 'Renaissance Composition', artist: 'Harvard Collection', date: '1884', medium: 'Oil on Canvas', museum: 'Harvard Art Museums', image_url: 'https://images.unsplash.com/photo-1579541814924-49fef17c5be5?w=800', isFavorite: false }
             ];
             combinedArtworks = [...combinedArtworks, ...mockHarvard];
         }
@@ -86,8 +86,8 @@ const fetchArtworks = async () => {
         } catch (error) {
             console.warn("Rijksmuseum API skipped (using fallback data).");
             const mockRijks = [
-                { id: 'r-mock-1', title: 'Old Man with a Gold Chain', artist: 'Rembrandt van Rijn', date: '1631', medium: 'Oil on Panel', museum: 'The Rijksmuseum', image_url: 'https://www.artic.edu/iiif/2/95be2572-b53d-8e7b-abc9-10eb48d4fa5d/full/843,/0/default.jpg', isFavorite: false },
-                { id: 'r-mock-2', title: 'Water Lily Pool', artist: 'Claude Monet', date: '1900', medium: 'Oil on Canvas', museum: 'The Rijksmuseum', image_url: 'https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/843,/0/default.jpg', isFavorite: false }
+                { id: 'r-mock-1', title: 'Dutch Golden Age Portrait', artist: 'Rembrandt van Rijn', date: '1631', medium: 'Oil on Panel', museum: 'The Rijksmuseum', image_url: 'https://images.unsplash.com/photo-1582561424760-0321d75e81fa?w=800', isFavorite: false },
+                { id: 'r-mock-2', title: 'Impressionist Water Lilies', artist: 'Claude Monet', date: '1900', medium: 'Oil on Canvas', museum: 'The Rijksmuseum', image_url: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=800', isFavorite: false }
             ];
             combinedArtworks = [...combinedArtworks, ...mockRijks];
         }
