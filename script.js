@@ -174,7 +174,7 @@ const renderArtworks = (artworksArray) => {
                 <h4 class="overlay-title">${artwork.title}</h4>
                 <div class="divider"></div>
                 <p class="overlay-meta">${artwork.date || 'Unknown Date'} • ${artwork.medium || 'Unknown Medium'}</p>
-                <button class="btn btn-outline">View Details</button>
+                <a href="${artwork.image_url}" target="_blank" class="btn btn-outline" style="text-decoration:none; padding:0.8rem 1.5rem; margin-top:0.5rem; display:inline-block;">View Artwork</a>
             </div>
         </div>
         `;
