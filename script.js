@@ -174,7 +174,7 @@ const renderArtworks = (artworksArray) => {
                 <h4 class="overlay-title">${artwork.title}</h4>
                 <div class="divider"></div>
                 <p class="overlay-meta">${artwork.date || 'Unknown Date'} • ${artwork.medium || 'Unknown Medium'}</p>
-                <a href="${artwork.image_url}" target="_blank" class="btn btn-outline" style="text-decoration:none; padding:0.8rem 1.5rem; margin-top:0.5rem; display:inline-block;">View Artwork</a>
+                <button onclick="openModal('${artwork.id}')" class="btn btn-outline" style="margin-top:0.5rem; width:100%;">View Details</button>
             </div>
         </div>
         `;
@@ -249,16 +249,53 @@ themeToggle.addEventListener('click', () => {
 
 
 // --- 6. Event Listeners ---
-// Listen for user input on Search Bar and changes on Dropdowns
 searchInput.addEventListener('input', applyFiltersAndSort);
 museumFilter.addEventListener('change', applyFiltersAndSort);
 sortFilter.addEventListener('change', applyFiltersAndSort);
 
 // --- App Initialization ---
-// Initiate the API fetch securely
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fetchArtworks);
 } else {
-    // If the DOM is already completely loaded, fetch immediately!
     fetchArtworks();
 }
+
+// --- 7. Modal Logic (Milestone 4 Extension) ---
+const artworkModal = document.getElementById('artworkModal');
+const modalImage = document.getElementById('modalImage');
+const modalTitle = document.getElementById('modalTitle');
+const modalArtist = document.getElementById('modalArtist');
+const modalMedium = document.getElementById('modalMedium');
+const modalDate = document.getElementById('modalDate');
+const modalMuseum = document.getElementById('modalMuseum');
+
+// Global Function: Open Modal injects filtered artwork explicitly
+window.openModal = (id) => {
+    // Array HOF (.find) strictly used to select correct artwork from state
+    const artwork = allArtworks.find(a => a.id === id);
+    if (!artwork) return;
+    
+    // Inject logic
+    modalImage.src = artwork.image_url;
+    modalTitle.textContent = artwork.title;
+    modalArtist.textContent = artwork.artist;
+    modalMedium.textContent = artwork.medium || 'Not specified';
+    modalDate.textContent = artwork.date || 'Unknown Era';
+    modalMuseum.textContent = artwork.museum;
+    
+    // Display Modal smoothly
+    artworkModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Lock background scrolling
+};
+
+window.closeModal = () => {
+    artworkModal.classList.add('hidden');
+    document.body.style.overflow = 'auto'; // Release scroll
+};
+
+// Close exactly when clicking the shadowy overlay (not the content)
+artworkModal.addEventListener('click', (e) => {
+    if (e.target === artworkModal) {
+        closeModal();
+    }
+});

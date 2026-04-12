@@ -136,6 +136,28 @@
         </button>
     </nav>
 
+    <!-- Artwork Details Modal -->
+    <div id="artworkModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <span class="material-symbols-outlined modal-close" onclick="closeModal()">close</span>
+            <div class="modal-content">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="Artwork">
+                </div>
+                <div class="modal-details">
+                    <p id="modalMuseum" class="modal-museum">Museum</p>
+                    <h2 id="modalTitle" class="modal-title">Title</h2>
+                    <h3 id="modalArtist" class="modal-artist">Artist</h3>
+                    <div class="modal-divider"></div>
+                    <ul class="modal-meta-list">
+                        <li><strong>Medium:</strong> <span id="modalMedium"></span></li>
+                        <li><strong>Date:</strong> <span id="modalDate"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Load pure JS Logic -->
     <script src="script.js"></script>
 </body>
