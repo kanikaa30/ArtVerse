@@ -32,10 +32,10 @@ const fetchArtworks = async () => {
 
         // --- FETCH 1: Harvard Art Museums (Requires API Key) ---
         try {
-            const harvardApiKey = 'YOUR_HARVARD_API_KEY_HERE'; 
+            const harvardApiKey = 'YOUR_HARVARD_API_KEY_HERE';
             const harvardRes = await fetch(`https://api.harvardartmuseums.org/object?apikey=${harvardApiKey}&hasimage=1&size=6`);
             if (!harvardRes.ok) throw new Error("Need valid API Key for Harvard");
-            
+
             const harvardData = await harvardRes.json();
             const formattedHarvard = harvardData.records
                 .filter(item => item.primaryimageurl)
@@ -78,7 +78,7 @@ const fetchArtworks = async () => {
                         id: `rijks-${item.objectNumber}`,
                         title: item.title,
                         artist: item.principalOrFirstMaker,
-                        date: 'Unknown Date', 
+                        date: 'Unknown Date',
                         medium: 'Mixed',
                         museum: 'The Rijksmuseum',
                         image_url: item.webImage.url,
@@ -101,9 +101,9 @@ const fetchArtworks = async () => {
         // We use different search terms to get a diverse, rich collection
         const unsplashAccessKey = 'jgOoXxKg-JqE6W-6PtXlaFe2GzGBj19xgbusrBloumQ';
         const searchQueries = ['painting', 'sculpture', 'portrait art', 'abstract art'];
-        
+
         // Use Promise.allSettled to fetch all queries in parallel (Array HOF!)
-        const unsplashPromises = searchQueries.map(query => 
+        const unsplashPromises = searchQueries.map(query =>
             fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&client_id=${unsplashAccessKey}&per_page=30`)
                 .then(res => {
                     if (!res.ok) throw new Error("Unsplash rate limited");
@@ -120,12 +120,12 @@ const fetchArtworks = async () => {
         // Process each result set using Array HOFs (.filter, .map, .flat equivalent via spread)
         const allUnsplashArtworks = unsplashResults
             .filter(result => result !== null && result.results)
-            .map(result => 
+            .map(result =>
                 result.results.map(item => {
                     return {
                         id: `unsplash-${item.id}`,
-                        title: item.alt_description 
-                            ? item.alt_description.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') 
+                        title: item.alt_description
+                            ? item.alt_description.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
                             : 'Unsplash Masterpiece',
                         artist: item.user.name || 'Unknown Photographer',
                         date: item.created_at ? item.created_at.split('-')[0] : 'Unknown Date',
@@ -139,7 +139,7 @@ const fetchArtworks = async () => {
             .reduce((acc, arr) => [...acc, ...arr], []); // Flatten using reduce (Array HOF!)
 
         // Remove duplicate Unsplash IDs using .filter with indexOf (Array HOF!)
-        const uniqueUnsplash = allUnsplashArtworks.filter((artwork, index, self) => 
+        const uniqueUnsplash = allUnsplashArtworks.filter((artwork, index, self) =>
             self.findIndex(a => a.id === artwork.id) === index
         );
 
@@ -164,11 +164,11 @@ const fetchArtworks = async () => {
 // --- 2. Rendering the UI Elements ---
 const renderArtworks = (artworksArray) => {
     if (artworksArray.length === 0) {
-        const emptyMessage = currentView === 'favourites' 
-            ? 'No favourites yet! Click the heart on artworks you love.' 
+        const emptyMessage = currentView === 'favourites'
+            ? 'No favourites yet! Click the heart on artworks you love.'
             : 'No masterpieces found matching your criteria.';
         const emptyIcon = currentView === 'favourites' ? 'favorite' : 'search_off';
-        
+
         masonryGrid.innerHTML = `
             <div class="loading-state">
                 <span class="material-symbols-outlined" style="font-size: 4rem; opacity: 0.5;">${emptyIcon}</span>
@@ -220,8 +220,8 @@ const applyFiltersAndSort = () => {
     const selectedSort = sortFilter.value;
 
     // Determine base source based on current view
-    let sourceArtworks = currentView === 'favourites' 
-        ? allArtworks.filter(a => a.isFavorite === true) 
+    let sourceArtworks = currentView === 'favourites'
+        ? allArtworks.filter(a => a.isFavorite === true)
         : allArtworks;
 
     // 1. FILTERING using .filter() HOF
@@ -229,7 +229,7 @@ const applyFiltersAndSort = () => {
         const titleMatch = artwork.title ? artwork.title.toLowerCase().includes(searchTerm) : false;
         const artistMatch = artwork.artist ? artwork.artist.toLowerCase().includes(searchTerm) : false;
         const matchesSearch = titleMatch || artistMatch;
-        
+
         const matchesMuseum = selectedMuseum === 'All Museums' ? true : artwork.museum === selectedMuseum;
 
         return matchesSearch && matchesMuseum;
@@ -238,7 +238,7 @@ const applyFiltersAndSort = () => {
     // 2. SORTING using .sort() HOF
     processedArtworks = [...processedArtworks].sort((a, b) => {
         if (selectedSort === 'Newest') {
-            return b.title.localeCompare(a.title); 
+            return b.title.localeCompare(a.title);
         } else if (selectedSort === 'Oldest First') {
             return a.title.localeCompare(b.title);
         } else {
@@ -267,7 +267,7 @@ window.toggleFavorite = (artworkId) => {
 // --- 5. Interactive Features: Theme Toggle (Dark / Light Mode) ---
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
-    
+
     const iconSpan = themeToggle.querySelector('span');
     if (document.body.classList.contains('light-mode')) {
         iconSpan.innerText = 'dark_mode';
@@ -282,7 +282,7 @@ const setActiveNav = (activeId) => {
     // Use Array.from + .forEach HOF to update nav link states
     const allNavLinks = document.querySelectorAll('.nav-link');
     Array.from(allNavLinks).forEach(link => link.classList.remove('active'));
-    
+
     const activeLink = document.getElementById(activeId);
     if (activeLink) activeLink.classList.add('active');
 };
@@ -359,14 +359,14 @@ const modalMuseum = document.getElementById('modalMuseum');
 window.openModal = (id) => {
     const artwork = allArtworks.find(a => a.id === id);
     if (!artwork) return;
-    
+
     modalImage.src = artwork.image_url;
     modalTitle.textContent = artwork.title;
     modalArtist.textContent = artwork.artist;
     modalMedium.textContent = artwork.medium || 'Not specified';
     modalDate.textContent = artwork.date || 'Unknown Era';
     modalMuseum.textContent = artwork.museum;
-    
+
     artworkModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 };
